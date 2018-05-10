@@ -10,32 +10,60 @@
   more-than-syntactic difference between the \lsquo{}starless\rsquo{} form of =let= and the
   \lsquo{}star-suffixed\rsquo{} form):
 
+This will output 6.
 #+BEGIN_SRC emacs-lisp
   (let ((a 1) (b 2) (c 3)) (+ a b c))
 #+END_SRC
 
+#+RESULTS:
+: 6
+Indeed it did. It sets the variables a, b, and c and then adds them together.
+
+This will not run. 
 #+BEGIN_SRC emacs-lisp
   (let ((a 1) (b 2) (c 3)) (+ a b c d))
 #+END_SRC
+Cannot run d is void it says. This is because we are telling it to add a variable called d but we have not defined
+such a variable.
 
+This also will not run.
 #+BEGIN_SRC emacs-lisp
   (let ((a 1) (b 2) (c 3)) [+ a b c d])
 #+END_SRC
 
+#+RESULTS:
+: [+ a b c d]
+It appears that it defined a set which includes + a, b, c, and d. The brackets define a set where parenthesis
+define a statement.
+
+This will output 4 then 6.
 #+BEGIN_SRC emacs-lisp
   (let ((a 1) (b 2) (c 3) (+ 4)) (+ a b c +))
 #+END_SRC
 
+#+RESULTS:
+: 10
+It outputted 10 because it defined the + symbol as a variable which is then set to 4. So it added together 1, 2, 3, and 4
+resulting in 10.
+
+This will return 11.
 #+BEGIN_SRC emacs-lisp
   (makunbound 'a)
   (let ((a 1) (b 2) (c 3) (d (+ a 4))) (+ a b c d))
 #+END_SRC
+Doesn't run. a is void. makunbound thus must mean that it deletes the variables provided in the parameters.
 
+This will return 11.
 #+BEGIN_SRC emacs-lisp
   (let* ((a 1) (b 2) (c 3) (d (+ a 4))) (+ a b c d))
 #+END_SRC
 
+#+RESULTS:
+: 11
+Indeed it does. d is set to the expression of 1 + 4 meaning 5. It then adds together 1, 2, 3, and 5 resulting in 11.
 ***  Your answer goes here.
+    See above.
+
 ** TODO TEJ
   A function-as-association between elements of a domain and elements of a
   codomain, for \ldquo{}small\rdquo domains and codomains, inspired so-called \ldquo{}association
@@ -71,6 +99,14 @@
   There are several variations of =assoc=. Find and give examples of using them.
 
 *** Your answer goes here.
+     There is a C++ STL data structure called maps which implement this idea. You use this if you want a quick way to 
+     access key-value pairs. Such as when storing student's grades. Each student gets their own key and the grade
+     is stored in an array which maps to that particular student's key.
+
+     Another example could be using a switch statement to determine which value to return in a function.
+     The key is entered and goes into the switch statement. Then the switch statement can return the corresponding
+     value.
+
 ** TODO WFK
   In the function-as-map context, here is another interpretation:
 
@@ -117,7 +153,7 @@
 
   And of course elisp:
 #+BEGIN_SRC emacs-lisp :results output
-  (let* ((mymap (make-hash-table :test 'equal)))
+  (let* ((mymap (make-hash-table)))
     (puthash "one" "red" mymap)
     (puthash "two" "blue" mymap)
     (puthash "three" "green" mymap)
@@ -126,6 +162,12 @@
               (gethash "three" mymap)))
     (maphash (lambda (key value) (princ (format "%s : %s\n" key value))) mymap))
 #+END_SRC
+
+#+RESULTS:
+: (nil nil nil)
+: one : red
+: two : blue
+: three : green
 
 : ("red" "blue" "green")
 : one : red
@@ -136,12 +178,17 @@
   =make-hash-table= call?
   
 *** Your answer goes here.
+    The variable is then no longer defined as a map and when you call puthash the function doesn't know how to respond
+    and simply returns nil instead.
+
+
 ** TODO TER
   This exercise explores /looping/ versus /mapping/.
 
   What does the =morphify= function defined below do? Think about it, then PVP
   the result of the call to it that follows.
 
+This will run each piece of the code in the list. It will then put the results in a list.
 #+BEGIN_SRC emacs-lisp :results silent
   (defun morphify (fun lst)
     (loop for item in lst
@@ -153,6 +200,11 @@
 #+BEGIN_SRC emacs-lisp :results raw
   (morphify (quote downcase) (quote ("THIS" "IS" "TOO" "LOUD")))
 #+END_SRC
+
+#+RESULTS:
+(this is too loud)
+So it lowercased each string in the list. So we passed it a function and a list of elements. It then ran that function
+and passed it each of the elements that we passed to morphify.
 
   The =morphify= function is essentially a /mapping/ function, which means it
   takes a passed-in function (=fun=) and a passed-in list (=lst=), and /maps fun
@@ -172,6 +224,11 @@
   Explain how this version of =morphify= works.
   
 *** Your answer goes here.
+    It recursively does the same thing as above. First it defeins an exit case where our list of arguments is null. 
+    Once this is hit it exists the recursive function. If our list is not null then it calls the function in fun and passes it the first
+    item in our list of arguments and appends that to a list. It then calls morphifyr again except with the first element taken off 
+    our list of arguments.
+
 ** TODO TGE
   Note the difference if -13 is used instead of 13 below:
 #+BEGIN_SRC emacs-lisp :results silent
@@ -180,22 +237,30 @@
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp :results raw
-  (let* ((number (/ 13 4.0))
+  (let* ((number (/ -13 4.0))
          (floor1 (floor number))
-         (floor2 (compute-floor-the-hard-way 13 4.0)))
+         (floor2 (compute-floor-the-hard-way -13 4.0)))
     (list number floor1 floor2))
 #+END_SRC
+
+#+RESULTS:
+(-3.25 -4 -4.0)
 
 : (3.25 3 3.0)
 
   Is the hard way correct?
   
 *** Your answer goes here.
+    Yes. 3.25 rounded down is 3. -3.25 rounded down is 4.
+
 ** TODO THP
   Graph the floor and ceiling functions f(x) = \lfloor{}x\rfloor and f(x) = \lceil{}x\rceil for real
   number values of x in the interval [-5.0 .. 5.0].
   
 *** Your answer goes here.
+      Number | Floor | Ceiling
+    
+
 ** TODO WKM
   Which of these statements about floor and ceiling are correct, for any real
   number $x$ and any integers $n$ and $m$?
