@@ -227,55 +227,232 @@ necessary condition
 
 p ^ q
    Identify: 
-      
+      And operation
+   Definition:
+      Evaluates to true if both statements are true.
+   Example/Explanation:
+      A truth table is a good way to illustrate this
+      p | q | p ^ q
+      1   1     1
+      1   0     0
+      0   1     0
+      1   0     0
+      0   0     0
+
 
 p V q
+   Identify:
+      Or operation
+   Definition:
+      Evaluates to true if one or both of the conditions are true.
+   Example/Explanation:
+   p | q | p V q
+   1   1     1
+   1   0     1
+   0   1     1
+   0   0     0
+
 
 p XOR q
+   Identify: 
+      Xor operator
+   Definition:
+      Evaluates to true if one of the conditions is true but not both.
+   Example/Explanation:
+   p | q | p XOR q
+   1   1      0
+   1   0      1
+   0   1      1
+   0   0      0
+
 
 p == q
+   Identify:
+     Equality operator
+   Definition: 
+     Evaluates to true if both pieces are the same and false if they are not
+   Example/Explanation:
+     p = 1
+     q = 1
+    (p == q) = 1
+    
+    p = 0
+    p = 1
+   (p == q) = 0
+
 
 p -> q
+   Identify:
+      Conditional operator.
+   Definition:
+      Represents an if then relationship
+   Example/Explanation:
+      p = it is raining
+      q = the grass is wet
+      p -> q = if it is raining then the grass is wet
+
 
 p <--> q
+   Identify:
+      Biconditional operator
+   Definition:
+      evaluates to true whenever both parts have the same truth value
+   Example/Explanation:
+    
+   p | q | p <-> q
+   1   1      1
+   1   0      0
+   0   1      0
+   0   0      1
+
 
 Three dots in a triangle
+   Identify: 
+      Therefore sign
+   Definition:
+      In logical proofs it is used to state the consequence of some premise.
+   Example/Explanation:
+      p ^ q therefore p
+
 
 upside down A
+   Identify: 
+      universal quantifier
+   Definiton: 
+      translates to "for all"
+   Explanation:
+      In a logical statement this means that for all instances of some variable the following is true.
+   Example:
+      For all S such that s does not equal q.
+
 
 Backwards E
+   Identify: 
+      Extensential quantifier
+   Definition:
+      translates to "for at least one instance of"
+   Explanation:
+      IN a logical statement this means that there exists at least one instance of the variable where the following is true.
+   Example:
+      For one instance of s such that s does not equal q.
+
 
 union
+   Definition:
+      For two sets A and B the union is the set of elements which are in A, in B, or in both A and B.
+   Example/Explanation:
+      A = {5, 3, 4}
+      B = {1, 4, 2, 8}
+      A union B = {1, 2, 3, 4, 5, 8}
+
 
 intersection
+   Definition:
+      For two sets A and B the intersection is the set of elements which are found in both A and B
+   Example/Explanation:
+      A = {4, 6, 7, 3, 1}
+      B = {7, 9, 3, 10}
+      A intersection B = {3, 7}
+
 
 Commutative laws
+   Definition:
+      The result of addition and multiplication operations will be the same regardless of order.
+   Example/Explanation:
+       a + b = b + a and ab = ba
+
 
 associative laws
+   Definition:
+       With addition and multiplication operations the terms can be associated in any way.
+    Explanation/Example:
+       (a + b) + c = a + (b + c)
+
 
 distributive laws
+    Definition:
+        The law that relates addition and multiplication
+     Example/Explanation:
+        a(b + c) = ab + ac
+
 
 identity laws
+   Definition:
+      When a set is anded to a tatuology or ored with a contradiction it results in the variable by itself.
+   Example/Explanation:
+      p ^ T = p
+      p V F = p
+
 
 negation laws
+    Definition:
+       A statement ored with its negation results in a statement that is always true and vice versa.
+    Example/Explanation:
+       p V !p = T
+       p ^ !p = F
+
 
 double negative law
+    Definition:
+       A statement that is negated twice results in the bare statement.
+    Example/Explanation:
+       !(!p) = p
+
 
 idempotent laws
+   Definition:
+      A statement ored with itself is itself and vice versa
+   Example/Explanation:
+      p ^ p = p
+      p V p = p
+
 
 universal bound laws
+   Definiton: 
+      Statement ored with a tatuology is always true and vice versa
+   Example/Explanation:
+      p V T = T
+
 
 De morgan's laws
+   Definition:
+      A negation can be distrubed as long as the sign is flipped.
+   Example/Explanation:
+      ~(p ^ q) = ~p V ~q
+
 
 absorption laws
+   Definition:
+      A statement can be simplified by performing a redundent operation.
+   Example/Explanation:
+      p V (p ^ q) = p
+
 
 negations of t and c
 
+
 vacuously true
+   Definition:
+      Asserts that all members of the emtpy set have certain properties. 
+   Example/Explanation:
+      The statement "all phones in the room are turned off" when they are no cell phones in the room.
 
 Modus Ponens
+   Definition:
+      Method of affirming
+   Example/Explanation:
+      if p then q
+         p
+      Therefore q
+
 
 Modus Tollens
+   Definition:
+      Mode that denies by denying
+   Example/Explanation:
+      if p then q
+      ~q
+      therefore ~p
 
 Elimination: valid argument form
 
