@@ -258,8 +258,17 @@ and passed it each of the elements that we passed to morphify.
   number values of x in the interval [-5.0 .. 5.0].
   
 *** Your answer goes here.
-      Number | Floor | Ceiling
-    
+  |-                -                        |
+  |  -            -                          |
+  |    -        -                            |
+  |      -    -                              |
+  |        -                                 |
+  |      -  -                                |
+  |    -      -                             |
+  |  -          -                          |
+  |-              -                         |
+  |------------------------------------------|
+     It would look something like that. idk how to do graphs in emacs.
 
 ** TODO WKM
   Which of these statements about floor and ceiling are correct, for any real
@@ -278,6 +287,7 @@ and passed it each of the elements that we passed to morphify.
       0$ as in statement 8).
   
 *** Your answer goes here.
+    
 ** TODO TIW
 
   Define the function \ldquo{}round to nearest integer\rdquo using the floor and ceiling
@@ -285,10 +295,50 @@ and passed it each of the elements that we passed to morphify.
   fractional part is less than one-half should be rounded down, otherwise up.)
 
 ***  Your answer goes here.
+    #+BEGIN_SRC emacs-lisp
+    (defun round-to-nearest-integer(integer)
+       (setq diff (- (+ 1 integer) integer))
+       (if (> diff 0.5)
+          (ceiling integer)
+          (floor integer)))
+    #+END_SRC
+
+    #+RESULTS:
+    : round-to-nearest-integer
+
+    #+BEGIN_SRC emacs-lisp
+    (round-to-nearest-integer 5.4)
+    #+END_SRC
+
+    #+RESULTS:
+    : 6
+
+    #+BEGIN_SRC emacs-lisp
+    (round-to-nearest-integer 6.7)
+    #+END_SRC
+
+    #+RESULTS:
+    : 7
+
 ** TODO TKG
   Explore the inverse of =assoc= via the functions =rassoc= and associates.
 
 ***  Your answer goes here.
+    #+BEGIN_SRC emacs-lisp
+    (setq alist '((1 . "one") (2 . "two") (3 . "three")))
+    (assoc 2 alist)
+    #+END_SRC
+
+    #+RESULTS:
+    : (2 . two)
+
+    #+BEGIN_SRC emacs-lisp
+    (rassoc "two" alist)
+    #+END_SRC
+
+    #+RESULTS:
+    : (2 . two)
+
 ** TODO WOV
   Identify the formula or rule that generates the terms of each sequence:
   1. =[7 14 21 28 35 42 49 56 63 70 ...]=
@@ -303,18 +353,28 @@ and passed it each of the elements that we passed to morphify.
   10. =[2 3 5 7 11 13 17 19 23 29 ...]=
 
 ***  Your answer goes here.
+    1. Increasing by 7 each time
+    2. Increasing by 4 each time
+    3. The amount of increase goes up by one each time.
+    4. It counts up by one in binary, adding a new 0 when needed.
+    5. The previous two numbers are added.
+    6. 
+    7. The previous two numbers are added.
+    8. The number is doubled
+    9. The number is multiplied by 3.
+    10. It adds by two then by four then by two then by four etc.
 ** TODO WQW
   Classify the following lisp functions according as each is or is not a predicate:
   | Predicate? | Yes or No? |
   |------------+------------|
-  | =list=     |            |
-  | =listp=    |            |
-  | =integerp= |            |
-  | =vector=   |            |
-  | =vectorp=  |            |
-  | =symbolp=  |            |
-  | =zerop=    |            |
-  | =evenp=    |            |
-  | =oddp=     |            |
+  | =list=     |     No     |
+  | =listp=    |     Yes    |
+  | =integerp= |     Yes    |
+  | =vector=   |     No     |
+  | =vectorp=  |     Yes    |
+  | =symbolp=  |     Yes    |
+  | =zerop=    |     Yes    |
+  | =evenp=    |     Yes    |
+  | =oddp=     |     Yes    |
 
 ***  Your answer goes here. (Replicate the above table.)
