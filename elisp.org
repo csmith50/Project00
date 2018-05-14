@@ -67,6 +67,8 @@ NOTE: Comment your code, and verify it works for "breaking cases" i.e. 0! = 1.
    (turn-list-to-ones alist)
    #+END_SRC
 
+This code for some reason does not like taking in lists as a paramter.
+
 * Loop function
 ** Code
 #+BEGIN_SRC emacs-lisp
@@ -75,3 +77,5 @@ NOTE: Comment your code, and verify it works for "breaking cases" i.e. 0! = 1.
 #+END_SRC
 
 #+RESULTS:
+
+... this produces no output for some reason. Im not sure why.

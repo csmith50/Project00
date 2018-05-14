@@ -9,11 +9,41 @@ NOTE: You must get this approved by Brother Benning.
 * Special Project
 
   I will be implementing the bubble sort in lisp code.
+  The bubble sort is the easiest to understand but least effcient sorting algorithim to implement.
+  It works by running through a list of objects and if the current object is larger then the next one in the 
+  list then it swaps the two items. It does this until the list is sorted by smallest to largest. 
+  
+  My implementation works very similarly. It loops until a variable is set to true indicating the list is sorted.
+  It loops through with an index and every time it makes a swap the index is set back to 0 for another pass
+  through the list. Once the index is equal to the length of the list then the list is sorted and the corresponding
+  variable is set to true to exit the loop.
+
   #+BEGIN_SRC emacs-lisp
-  (defun bubbleSort (alist)
+  (defun bubbleSort (sequence)
      (setq index 0)
      (setq finished nil)
      (while (= finished nil)
-        (setq index 0)
-        (if ())))
+        (if (> (nth index sequence) (nth (+ index 1) sequence))
+           (progn 
+              (setq temp (nth index sequence))
+              (setf (nth index sequence) (nth (+ index 1) sequence))
+              (setf (nth (+ index 1) sequence) temp)
+              (setq index -1)
+              ))
+        (setq index (+ index 1))
+        (if (= index (length sequence))
+           (setq finished t))))
   #+END_SRC 
+
+  #+RESULTS:
+  : bubbleSort
+
+  #+BEGIN_SRC emacs-lisp
+  (setq numbers '(5 7 3 9))
+  (bubbleSort numbers)
+  #+END_SRC
+
+ The main way this differes from common implementaions is the way if statements work in lisp. If you want to run
+ more than one line of code within an if statement block you have to put it inside a progn block, which runs each of the lines
+ stated in its parameters. In other langugaes all that would be required is that the lines be placed inside curly braces, just a tab
+ as is the case with python. 
