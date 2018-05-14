@@ -39,3 +39,5 @@ EXTRA CREDIT 15%
 Puzzles from 02-ponder-and-prove.org.  I WILL NOT HELP/NOR GIVE HINTS FOR THIS PART
 
 NOTE: You may work in a group or individually. Groups no more than 6.
+
+TIME ESTIMATE: I think this took about 9-10 hours over the week. The terms were the most time consuming part.
