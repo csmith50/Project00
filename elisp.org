@@ -9,18 +9,69 @@ NOTE: Comment your code, and verify it works for "breaking cases" i.e. 0! = 1.
 * Factorial Code
 ** Code
 #+BEGIN_SRC emacs-lisp
-(+ 2 3 4)
+(defun factorial (number)
+   (cond
+      ((= number 1) 1)
+      (t (* number (factorial (- number 1))))))
 #+END_SRC
+
+#+RESULTS:
+: factorial
+
 ** Test cases
+   #+BEGIN_SRC emacs-lisp
+   (factorial 5)
+   #+END_SRC
+
+   #+RESULTS:
+   : 120
+   
+   #+BEGIN_SRC emacs-lisp
+   (factorial 7)
+   #+END_SRC
+
+   #+RESULTS:
+   : 5040
+
 ** How big a number will make your computer freeze?
+   Lets see....
+   #+BEGIN_SRC emacs-lisp
+   (factorial 50)
+   #+END_SRC
+
+   #+RESULTS:
+   : 1353190950536478720
+   
+   #+BEGIN_SRC emacs-lisp
+   (factorial 51)
+   #+END_SRC
+
+   #+RESULTS:
+   : -162551799050403840
+
 * "Real-World" function with mapcar
 ** What is mapcar
+   Calls its first argument with each element in its second argument. It follows that the second argument must be a list.
 ** Code
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
+      (defun turn-list-to-ones (number-list)
+         (setq second-list (mapcar (lambda (x) (- x 1)) number-list))
+         (- number-list second-list))
+   #+END_SRC
 
-#+END_SRC
+   #+RESULTS:
+   : turn-list-to-ones
+
+   #+BEGIN_SRC emacs-lisp
+   (setq alist '(4 5 6 7))
+   (turn-list-to-ones alist)
+   #+END_SRC
+
 * Loop function
 ** Code
 #+BEGIN_SRC emacs-lisp
-
+(loop for n from 10 to 20
+   do (print n))
 #+END_SRC
+
+#+RESULTS:

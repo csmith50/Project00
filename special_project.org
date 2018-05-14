@@ -7,3 +7,13 @@
 NOTE: You must get this approved by Brother Benning.
 
 * Special Project
+
+  I will be implementing the bubble sort in lisp code.
+  #+BEGIN_SRC emacs-lisp
+  (defun bubbleSort (alist)
+     (setq index 0)
+     (setq finished nil)
+     (while (= finished nil)
+        (setq index 0)
+        (if ())))
+  #+END_SRC 
